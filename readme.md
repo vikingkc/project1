@@ -15,7 +15,8 @@ This project demonstrates simple django urlrouting ,views and static files for T
 
 ## Installation
 Firstly create new Python virtual environment using\
-```bash python -m venv myenv
+```bash
+python -m venv myenv
 ```
 # Activate that environment
 For windows\
