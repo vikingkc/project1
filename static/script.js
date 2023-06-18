@@ -1,0 +1,1 @@
+console.log("Hello i am javascript , i got called , i help you create interactive web apps")

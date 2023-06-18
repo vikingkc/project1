@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{page_title}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'mystyle.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+</head>
+<body class="my-body">
+    <h1>{{content}}</h1>
+    <p>Random value from server is</p>
+    <h2>{{random}}</h2>
+    <p>Please refresh to change me</p>
+    {% if display_hobby %}
+    <h1>My Hobbies</h1>
+    <ul>
+       {% for hobby in hobbies %}
+       <li>{{hobby}}</li>
+       {% endfor %}
+    </ul>
+    
+    {% endif %}
+    
+    <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200830174724/Top-10-Reasons-to-Choose-Django-Framework-For-Your-Project-Update.png" alt="My Image">
+    <a href="https://google.com">Visit Example Website</a>
+</body>
+
+
+<style>
+  
+</style>
+</html>

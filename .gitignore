@@ -1,0 +1,13 @@
+.env
+env
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+Dockerfile
+docker-compose.yml
+datadump.json
+test.json
