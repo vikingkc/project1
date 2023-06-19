@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <h1> Manage <strong>ITEM</strong></h1>
+<div class="row">
+    <div class="col-lg-12">
+        <a class='btn btn-success' href="#"><i class="fa fa-text"></i> Add Blog</a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <thead>
+          <tr class='bg-success text-white'>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+            <th scope='col'>Title</th>
+            <th scope="col">Author</th>
+
+           
+            <th scope="col">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            
+          <tr>
+            <th scope="row">1</th>
+            <td title="April 29, 2023, 9:14 a.m.">1 month, 2 weeks ago</td>
+            <td>new blog</td>
+            <td>None</td>
+         
+            <td>
+              <a class='btn btn-primary' href="#"><i class="fa fa-eye"></i></a>
+              <a class='btn btn-warning' href="/edit/1/"><i class="fa fa-edit"></i></a>
+
+              <a class='btn btn-danger' href="/delete/1/"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+
+          
+          <tr>
+            <th scope="row">2</th>
+            <td title="June 18, 2023, midnight">22 hours, 53 minutes ago</td>
+            <td>sghbjnkm,</td>
+            <td>None</td>
+         
+            <td>
+              <a class='btn btn-primary' href="#"><i class="fa fa-eye"></i></a>
+              <a class='btn btn-warning' href="/edit/2/"><i class="fa fa-edit"></i></a>
+              <!-- <a class='btn btn-success' href="#"><i class="fa fa-plus"></i></a> -->
+              <a class='btn btn-danger' href="/delete/2/"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>  
+        </tbody>
+      </table>
+</div>
+
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+
+        {% for i in items %}
+            <li>{{i}}</li>
+        {% endfor %}
+        <div></div>
+
+    </div>
+</div>
+{% endblock %}

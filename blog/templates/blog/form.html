@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="" method="get">
+        <label for="full_name">Full Name</label>
+        <input type="text" name="full_name" id="full_name">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2> {{response}}</h2>
+
+<a href="{% url 'blog:data_view' sent %}">DATA VIEW</a>
+</body>
+</html>

@@ -7,6 +7,7 @@
     <script src="{% static 'script.js' %}"></script>
 </head>
 <body class="my-body">
+    <a href="{% url 'blog:blog_view' %}">BLOG APP</a>
     <h1>{{content}}</h1>
     <p>Random value from server is</p>
     <h2>{{random}}</h2>

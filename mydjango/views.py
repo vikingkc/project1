@@ -3,6 +3,27 @@ from django.http import HttpResponse
 from django.shortcuts import render
 # from django.shortcuts import HttpResponse
 from random import randint
+
+
+def test(request):
+    context = {
+        "page_title":"TEST PAGE TITLE",
+        'items':[{
+            'name':"SIMRAM",
+            'age':16,
+            'sex':"FEMALE"
+        },{
+            'name':"RAM",
+            'age':24,
+            'sex':"MALE"
+        },{
+            'name':"HARI",
+            'age':45,
+            'sex':"MALE"
+        }]
+
+    }
+    return render(request,'blank.html',context)
 def index(request):
     value = randint(99,999)
     display = True
