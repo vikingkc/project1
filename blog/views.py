@@ -11,7 +11,7 @@ from .models import Blog,Category
 def blog_view(request):
     blogs = Blog.objects.filter(status='published')
     total_blogs = Blog.objects.all().count()
-    draft_blogs = Blog.object.filter(status='draft').count()
+    draft_blogs = Blog.objects.filter(status='draft').count()
     context = {
         'blogs':blogs,
         'total_blogs':total_blogs,
