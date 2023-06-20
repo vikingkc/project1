@@ -25,6 +25,6 @@ urlpatterns = [
     path('me/',views.me_view,name='me'),
     path('dynamic/<str:mypath>/',views.dynamic_view,name='dynamic'),
     path('test/',views.test),
-    path('',include('blog.urls')),
+    path('blog/',include('blog.urls')),
 
 ] +  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

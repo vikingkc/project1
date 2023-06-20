@@ -1,0 +1,15 @@
+{% extends 'mybase.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit <strong>{{blog.title}}</strong></h1>
+    <div class="row">
+       <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-warning">Edit Blog</button>
+       </form>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,50 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-<div class="my-row">
-    <div class="my-col">
-        Total Blogs: <strong>{{total_blogs}}</strong>
+{% extends 'mybase.html' %}
+
+
+
+
+{% block content %}
+    <div class="container">
+        <a href="{% url 'blog:blog_create' %}" class="btn btn-primary">Create Blog</a>
+        <div class="row">
+            <h1>Blog List</h1>
+            <!-- Table Comes Here -->
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">DateTime</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 {% for blog in blogs %}
+                 <tr>
+                    <th scope="row">{{blog.id}}</th>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.description}}</td>
+                    <td>{{blog.date}}</td>
+                    <td>{{blog.category}}</td>
+                    <td>
+                        {% if blog.status == 'draft' %}
+                        <span class="badge bg-dark text-white">DRAFT</span>
+                        {% else %}
+                        <span class="badge bg-success text-white">PUBLISHED</span>
+                        {% endif %}
+
+
+                    </td>
+                    <td>
+                       <a href="#" class="btn btn-primary" title="View Detail"> <i class="fa fa-eye"></i> </a>
+                       <a href="{% url 'blog:blog_edit' blog.id %}" class="btn btn-warning" title="Edit"> <i class="fa fa-edit"></i> </a>
+                       <a href="{% url 'blog:blog_delete' blog.id %}" class="btn btn-danger" title="Delete"> <i class="fa fa-trash"></i> </a>
+                    </td>
+                  </tr>
+
+                 {% endfor %}
+                </tbody>
+              </table>
+            <!-- Table Ends -->
+        </div>
     </div>
-    <div class="my-col">Draft Blogs: <strong>{{draft_blogs}}</strong>
-    </div>
-</div>
-{{blogs}}
 
-{% for blog in blogs %}
-<div class="blog-item">
-<h1>{{blog.title}}</h1>
-<p>{{blog.description}}</p>
-<h2>{{blog.date}}</h2>
-<hr>
-</div>
-{% endfor %}
+{% endblock content %}
 
 
-<style>
-    .blog-item{
-        background-color: rgb(203, 238, 238);
-        margin:10px;
-    }
-    .my-row{
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-
-    }
-    .my-col{
-        background-color: rgb(29, 183, 29);
-        border-radius: 10px;
-        margin:10px;
-        padding:10px;
-        color: white;
-        
-    }
-</style>
-</body>
-</html>

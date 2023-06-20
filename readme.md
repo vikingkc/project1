@@ -3,7 +3,7 @@
 
 ## Description
 
-This project demonstrates simple django urlrouting ,views and static files for Templates and Template Rendering 
+This project demonstrates Model Creation , making migrations and ORM Queries in Django 
 
 
 
@@ -13,17 +13,17 @@ This project demonstrates simple django urlrouting ,views and static files for T
 - [Installation](#installation)
 
 
-## Installation
+## Installation (REQUIRED )
 Firstly create new Python virtual environment using\
 ```bash
 python -m venv myenv
 ```
 # Activate that environment
-For windows\
+For windows
 ```bash 
 myenv\Scripts\activate
 ```
-For Linux\
+For Linux
 ```bash
 myenv/bin/activate
 ```
@@ -36,7 +36,15 @@ Run
 ```bash
 pip install -r requirements.txt
 ```
-and then finally\
+change directory to project directory to run migrations and server
+```bash
+python manage.py makemigrations
+```
+
+```bash
+python manage.py migrate
+```
+and then finally
 ```bash
 python manage.py runserver
 ```

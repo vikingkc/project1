@@ -1,0 +1,16 @@
+{% extends 'mybase.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Conform Delete <strong>{{blog.title}} ?</strong></h1>
+    <div class="row">
+       <form action="" method="post">
+        {% csrf_token %}
+
+
+        <button type="submit" class="btn btn-danger">Delete Blog</button>
+       </form>
+    </div>
+</div>
+
+{% endblock content %}
