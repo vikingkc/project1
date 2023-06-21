@@ -37,8 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    #Ref https://django-crispy-forms.readthedocs.io/en/latest/install.html
+    #These Apps are for forms styling
+    'crispy_forms',
+    'crispy_bootstrap4'
 ]
+
+#Ref https://django-crispy-forms.readthedocs.io/en/latest/install.html
+'''
+In html template {% load crispy_forms_tags %}
+and use {{form | crispy }}
+
+'''
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,6 +132,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

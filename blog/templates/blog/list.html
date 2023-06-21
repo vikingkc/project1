@@ -4,6 +4,7 @@
 
 
 {% block content %}
+
     <div class="container">
         <a href="{% url 'blog:blog_create' %}" class="btn btn-primary">Create Blog</a>
         <div class="row">
@@ -15,9 +16,11 @@
                     <th scope="col">ID</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Featured Photo</th>
                     <th scope="col">DateTime</th>
                     <th scope="col">Category</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Author</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -27,6 +30,7 @@
                     <th scope="row">{{blog.id}}</th>
                     <td>{{blog.title}}</td>
                     <td>{{blog.description}}</td>
+                    <td><img src="{% if blog.photo %}{{blog.photo.url}}{% endif %}" height="100px" width="200px" alt=""></td>
                     <td>{{blog.date}}</td>
                     <td>{{blog.category}}</td>
                     <td>
@@ -38,6 +42,7 @@
 
 
                     </td>
+                    <td><strong>{{blog.author}}</strong></td>
                     <td>
                        <a href="#" class="btn btn-primary" title="View Detail"> <i class="fa fa-eye"></i> </a>
                        <a href="{% url 'blog:blog_edit' blog.id %}" class="btn btn-warning" title="Edit"> <i class="fa fa-edit"></i> </a>

@@ -2,6 +2,10 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
 from .models import Blog,Category
 from .forms import BlogForm
+from .utils import check_emotion
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # name = request.GET.get('full_name')
@@ -10,13 +14,32 @@ from .forms import BlogForm
     #     'response': "{} is from {}".format(name,address),
     #     'sent':"this-is-normal"
     # }
+from django.contrib.auth import login,authenticate,logout
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            messages.success(request,"Logged in Successfully")
+            return redirect('blog:blog_index')
+        else:
+            messages.error(request,"Username or Password Error")
+
+    return render(request,'login.html',{})
+
+
+
+@login_required(login_url="blog:loginPage")
 def blog_index(request):
         
     query = request.GET.get('query')
-    if query is not None:
-        blogs = Blog.objects.filter(title__icontains=query)
+    if query is not None and query != '':
+        blogs = Blog.objects.filter(title__icontains=query).order_by('-id')
     else:
-        blogs = Blog.objects.all()
+        blogs = Blog.objects.all().order_by('-id')
     # print(request.GET)
     # print("value is persent")
     # query = request.GET['query']
@@ -27,21 +50,42 @@ def blog_index(request):
     }
     return render(request,'blog/list.html',context)
 
+
+
+@login_required(login_url="blog:loginPage")
 def blog_create(request):
     form = BlogForm()
     if request.method == 'POST':
-        form = BlogForm(request.POST)
+        form = BlogForm(request.POST,request.FILES)
         if form.is_valid():
+
+            title_data = form.cleaned_data.get('title')
+            emotion = check_emotion(title_data)
+            print(emotion)
+            if emotion == "POSITIVE":
+                blog = form.save(commit=False)
+                blog.author = request.user
+                blog.save()
+
+                messages.success(request,"Blog Created")
+                # messages.success(request,"successfully created")
+                return redirect('blog:blog_index')
+            
+            else:
+                messages.success(request,"the title is negative please improve your words")
             print("form valid")
             # save the form which ultimately creates object in database
-            form.save()
-            return redirect('blog:blog_view')
+            
+            
     context = {
         "page_title":"BLOG CREATE",
         'form':form
     }
     return render(request,'blog/create.html',context)
 
+
+
+@login_required(login_url="blog:loginPage")
 def blog_edit(request,id):
     try:
         blog = Blog.objects.get(id=id)
@@ -52,12 +96,12 @@ def blog_edit(request,id):
     #TODO:
     ## form handling
     if request.method == 'POST':
-        form = BlogForm(request.POST,instance = blog)
+        form = BlogForm(request.POST,request.FILES,instance = blog)
         if form.is_valid():
             print("form valid")
             # save the form which ultimately updates the object
             form.save()
-            return redirect('blog:blog_view')
+            return redirect('blog:blog_index')
     context = {
         'blog':blog,
         'form':form,
@@ -65,19 +109,24 @@ def blog_edit(request,id):
     return render(request,'blog/edit.html',context)
 
 
+
+@login_required(login_url="blog:loginPage")
 def blog_delete(request,id):
     blog = get_object_or_404(Blog,id=id)
     if request.method == 'POST':
         blog.delete()
-        return redirect('blog:blog_view') # return to blog list view
+        messages.error(request,"Blog Deleted")
+        return redirect('blog:blog_index') # return to blog list view
     context = {
         'blog':blog
     }
     return render(request,'blog/confirm-delete.html',context)
     
 
+
+@login_required(login_url="blog:loginPage")
 def blog_view(request):
-    blogs = Blog.objects.filter(status='published')
+    blogs = Blog.objects.filter
     total_blogs = Blog.objects.all().count()
     draft_blogs = Blog.objects.filter(status='draft').count()
     context = {
