@@ -1,5 +1,6 @@
 from django.urls import path
 from blog import views
+from blog import api
 # TODO: APP NAME 
 app_name="blog"
 
@@ -12,4 +13,8 @@ urlpatterns = [
     path('new/<str:data>/',views.data_view,name='data_view'),
     path('login/',views.loginPage,name='loginPage'),
     # path("redirect",views.test_redirect,name="test_redirect")
+
+    path('api/',api.hello_world,name="api_view"),
+    path('api/blood_donor/',api.blood_donor,name='blood_donor'),
+    path('api/blood_donor/<int:id>/',api.blood_donor_detail,name="blood_donor_details")
 ]

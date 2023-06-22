@@ -25,6 +25,15 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class BloodDonor(models.Model):
+    #
+    name= models.CharField(max_length=100)
+    age= models.IntegerField()
+    gender= models.CharField(max_length=64)
+    bloodgroup= models.CharField(max_length=32)
+    phone= models.BigIntegerField()
 
 
 

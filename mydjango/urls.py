@@ -19,6 +19,7 @@ from django.urls import path,include
 from mydjango import views
 from django.conf import settings
 from django.conf.urls.static import static
+from blog import api
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.index,name='index'),
@@ -26,6 +27,9 @@ urlpatterns = [
     path('dynamic/<str:mypath>/',views.dynamic_view,name='dynamic'),
     path('test/',views.test),
     path('blog/',include('blog.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    
+    
 
 ] + static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
 # static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
 from .models import Blog,Category
 from .forms import BlogForm
-from .utils import check_emotion
+#from .utils import check_emotion
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -60,9 +60,10 @@ def blog_create(request):
         if form.is_valid():
 
             title_data = form.cleaned_data.get('title')
-            emotion = check_emotion(title_data)
-            print(emotion)
-            if emotion == "POSITIVE":
+            #emotion = check_emotion(title_data)
+            #print(emotion)
+            #if emotion == "POSITIVE":
+            if "POSITIVE==POSITIVE": #always true
                 blog = form.save(commit=False)
                 blog.author = request.user
                 blog.save()
